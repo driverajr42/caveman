@@ -1,92 +1,94 @@
+import React, { useState, useEffect} from 'react'
+import Link from 'next/link'
 import Image from 'next/image'
-import { Fragment } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai'
 
-import logo from '../docs/logo.svg'
+import Logo from '../docs/logo.svg'
 
-const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
-]
+const Navbar = () => {
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+    const [nav, setNav ] = useState(false)
+
+    // These states are to change the background and text colors when user scrolls down
+    const [color, setColor] = useState('transparent')
+    const [textColor, setTextColor] = useState('white')
+
+    const handleNav = () => {
+        setNav(!nav)
+    } 
+
+
+    useEffect(()=>{
+        // If user scrolled down the window passed a certain point the background and text color of navbar will change using the following effect
+        const colorChange = () => {
+            if(window.scrollY >= 90 ) {
+                setColor('#fff')
+                setTextColor('#000')
+            } else {
+                setColor('transparent')
+                setTextColor('#fff')
+            } // Else if user is not scrolled down a certain piont than effect will return back to its orignal state
+        }
+        // Telling the window to listen to the scroll
+        window.addEventListener('scroll', colorChange)
+    }, [])
+
+  return (
+    <div style={{backgroundColor:`${color}` }} className='fixed left-0 top-0 w-full h-24 z-10 mb-12 ease-in duration-300'>
+        {/* Company Logo */}
+        <div className='max-w-[1240px] -mt-16 flex justify-between items-center p-4 text-white'>
+            <Link href='/'>
+            <Image
+      src={Logo}
+      alt="Picture of the author"
+      width={200}
+      height={200}
+    />
+            </Link>
+
+            <ul style={{color:`${textColor}` }} className='hidden sm:flex'>
+                <li className='p-4'>
+                    <Link href='/'>Home</Link>
+                </li>
+                <li className='p-4'>
+                    <Link href='/#gallery'>Gallery</Link>
+                </li>
+                <li className='p-4'>
+                    <Link href='/portfolio'>Work</Link>
+                </li>
+                <li className='p-4'>
+                    <Link href='/contact'>Contact</Link>
+                </li>   
+            </ul>
+
+            {/* Mobile Menu Button */}
+            <div onClick={handleNav} className='block sm:hidden z-10'>
+                {/* If navbar is open show the close icon. Else show the menu icon */}
+                { nav ? <AiOutlineClose size={20} className='text-accent-1'/> : <AiOutlineMenu size={20} className='text-accent-2'/>}
+            </div>
+
+            {/* Mobile Menu */}
+            {/* If nav is not showing display the first styles. If it is open the show the second */}
+            <div className={nav ? 'sm:hidden absolute top-0 left-0 right-0 bottom-0 flex justify-center items-center w-full h-screen bg-accent-2 text-center ease-in duration-300' : 'sm:hidden absolute top-[100vh] left-0 right-0 bottom-0 flex justify-center items-center w-full h-screen bg-black text-center ease-in duration-300'}>
+            <ul>
+                <li className='p-4 text-4xl hover:text-gray-500'>
+                    <Link href='/'>Home</Link>
+                </li>
+                <li className='p-4 text-4xl hover:text-gray-500'>
+                    <Link href='/#gallery'>Gallery</Link>
+                </li>
+                <li className='p-4 text-4xl hover:text-gray-500'>
+                    <Link href='/portfolio'>Work</Link>
+                </li>
+                <li className='p-4 text-4xl hover:text-gray-500'>
+                    <Link href='/contact'>Contact</Link>
+                </li>   
+            </ul>
+            </div>
+
+        </div>
+    </div>
+  )
 }
 
-export default function Navbar() {
-    return (
-        <Disclosure as="nav" className="bg-accent-1 shadow-medium h-20" >
-        {({ open }) => (
-          <>
-            <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-              <div className="relative flex h-16 items-center justify-between">
-                <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                  {/* Mobile menu button*/}
-                  <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                    <span className="sr-only">Open main menu</span>
-                    {open ? (
-                      <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
-                    ) : (
-                      <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
-                    )}
-                  </Disclosure.Button>
-                </div>
-                <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                  <div className="flex flex-shrink-0 items-center">
-                  <Image className='h-60 w-60 py-8 mt-2 lg:h-96 lg:w-96 lg:py-20 '
-      src={logo}
-      alt="Picture of the author"
-      
-    />
-               
-                
-                  </div>
-                  <div className="hidden sm:ml-6 sm:block">
-                    <div className="flex space-x-4">
-                      {navigation.map((item) => (
-                        <a
-                          key={item.name}
-                          href={item.href}
-                          className={classNames(
-                            item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                            'px-3 py-2 rounded-md text-sm font-medium'
-                          )}
-                          aria-current={item.current ? 'page' : undefined}
-                        >
-                          {item.name}
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-               
-              </div>
-            </div>
-  
-            <Disclosure.Panel className="sm:hidden">
-              <div className="space-y-1 px-2 pt-2 pb-3">
-                {navigation.map((item) => (
-                  <Disclosure.Button
-                    key={item.name}
-                    as="a"
-                    href={item.href}
-                    className={classNames(
-                      item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                      'block px-3 py-2 rounded-md text-base font-medium'
-                    )}
-                    aria-current={item.current ? 'page' : undefined}
-                  >
-                    {item.name}
-                  </Disclosure.Button>
-                ))}
-              </div>
-            </Disclosure.Panel>
-          </>
-        )}
-      </Disclosure>
-    )
-  }
-  
+export default Navbar
