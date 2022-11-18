@@ -1,6 +1,7 @@
 import Avatar from './avatar'
 import Date from './date'
 import CoverImage from './cover-image'
+import  SectionSeparator from './section-separator'
 import PostTitle from './post-title'
 import Categories from './categories'
 
@@ -17,9 +18,10 @@ export default function PostHeader({
       <div className="hidden md:block md:mb-12">
         <Avatar author={author} />
       </div>
-      <div className="mb-8 md:mb-16 sm:mx-0">
+      <div className=" mb-8 md:mb-16 sm:mx-0">
         <CoverImage title={title} coverImage={coverImage} />
       </div>
+      <SectionSeparator />
       <div className="max-w-2xl mx-auto">
         <div className="block md:hidden mb-6">
           <Avatar author={author} />

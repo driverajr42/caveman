@@ -25,7 +25,7 @@ export default function Post({ post, posts, preview }) {
   return (
     <Layout preview={preview}>
       <Navbar />
-      <Container>
+      <div>
        
         {router.isFallback ? (
           <PostTitle>Loading…</PostTitle>
@@ -58,7 +58,7 @@ export default function Post({ post, posts, preview }) {
             {morePosts.length > 0 && <MoreStories posts={morePosts} />}
           </>
         )}
-      </Container>
+      </div>
     </Layout>
   )
 }

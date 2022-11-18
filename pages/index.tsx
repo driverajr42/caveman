@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import { GetStaticProps } from 'next'
 import Navbar from '../components/navbar'
-import Container from '../components/container'
 import MoreStories from '../components/more-stories'
 import HeroPost from '../components/hero-post'
 import Layout from '../components/layout'
@@ -18,7 +17,7 @@ export default function Index({ allPosts: { edges }, preview }) {
         <title>Next.js Blog Example with {CMS_NAME}</title>
       </Head>
       <Navbar />
-      <Container >
+      <div className='px-5' >
         {heroPost && (
           <HeroPost
             title={heroPost.title}
@@ -28,7 +27,7 @@ export default function Index({ allPosts: { edges }, preview }) {
           />
         )}
         {morePosts.length > 0 && <MoreStories posts={morePosts} />}
-      </Container>
+      </div>
     </Layout>
   )
 }
