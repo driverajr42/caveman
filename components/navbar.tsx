@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 
 import Logo from '../docs/logo.svg';
@@ -8,42 +8,24 @@ import Logo from '../docs/logo.svg';
 const Navbar = () => {
 	const [nav, setNav] = useState(false);
 
-	// These states are to change the background and text colors when user scrolls down
-	const [color, setColor] = useState('transparent');
-	const [textColor, setTextColor] = useState('white');
-
 	const handleNav = () => {
 		setNav(!nav);
 	};
 
-	useEffect(() => {
-		// If user scrolled down the window passed a certain point the background and text color of navbar will change using the following effect
-		const colorChange = () => {
-			if (window.scrollY >= 90) {
-				setColor('#fff');
-				setTextColor('#000');
-			} else {
-				setColor('transparent');
-				setTextColor('#fff');
-			} // Else if user is not scrolled down a certain piont than effect will return back to its orignal state
-		};
-		// Telling the window to listen to the scroll
-		window.addEventListener('scroll', colorChange);
-	}, []);
-
 	return (
 		<div
-			style={{ backgroundColor: `${color}` }}
-			className="fixed left-0 top-0 w-full h-24 z-10 mb-12 ease-in duration-300"
+			// style={{ backgroundColor: `${color}` }}
+			className="fixed left-0 top-0 w-full h-24 z-10 mb-12 ease-in duration-300 bg-white
+             shadow-medium"
 		>
 			{/* Company Logo */}
 			<div className="max-w-[1240px]  flex justify-between items-center p-4 text-white">
-				<h1 className="text-accent-2 text-2xl text-center font-bold font-['Rokkitt']">
+				<h1 className="text-accent-2 text-2xl text-center uppercase tracking-wide ml-6 font-['Crimson-Text']">
 					Thoughts <br />
 					of a Caveman
 				</h1>
 
-				<ul style={{ color: `${textColor}` }} className="hidden sm:flex">
+				<ul className="hidden sm:flex">
 					<li className="p-4">
 						<Link href="/">Home</Link>
 					</li>
@@ -77,7 +59,7 @@ const Navbar = () => {
 							: 'sm:hidden absolute top-[100vh] left-0 right-0 bottom-0 flex justify-center items-center w-full h-screen bg-black text-center ease-in duration-300'
 					}
 				>
-					<ul className="font-['Roboto','sans-serif']">
+					<ul className="font-['Crimson-Text']">
 						<li className="p-4 text-4xl hover:text-gray-500">
 							<Link href="/">Home</Link>
 						</li>
