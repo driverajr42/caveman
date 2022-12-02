@@ -13,7 +13,7 @@ export default function HeroPost({ title, coverImage, excerpt, slug }) {
 			</div>
 			<div className="md:grid md:grid-cols-2 md:gap-x-16 lg:gap-x-8 mb-20 md:mb-28">
 				<div className="text-center">
-					<h3 className="mb-4 text-4xl lg:text-6xl leading-tight font-['Rokkitt','serif']">
+					<h3 className="mb-4 text-4xl lg:text-6xl leading-tight font-['Crimson-Text']">
 						<Link
 							href={`/posts/${slug}`}
 							className="hover:underline"
@@ -23,7 +23,7 @@ export default function HeroPost({ title, coverImage, excerpt, slug }) {
 				</div>
 				<div>
 					<div
-						className="text-lg text-center leading-relaxed mb-4 font-['Roboto', 'sans-serif']"
+						className="text-lg text-center leading-relaxed mb-4 font-['Open-Sans']"
 						dangerouslySetInnerHTML={{ __html: excerpt }}
 					/>
 				</div>

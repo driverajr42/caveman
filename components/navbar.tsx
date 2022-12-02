@@ -20,10 +20,12 @@ const Navbar = () => {
 		>
 			{/* Company Logo */}
 			<div className="max-w-[1240px]  flex justify-between items-center p-4 text-white">
-				<h1 className="text-accent-2 text-2xl text-center uppercase tracking-wide ml-6 font-['Crimson-Text']">
-					Thoughts <br />
-					of a Caveman
-				</h1>
+				<Link href="/">
+					<h1 className="text-accent-2 text-2xl text-center uppercase tracking-wide ml-6 font-['Crimson-Text']">
+						Thoughts <br />
+						of a Caveman
+					</h1>
+				</Link>
 
 				<ul className="hidden sm:flex">
 					<li className="p-4">
@@ -51,6 +53,7 @@ const Navbar = () => {
 				</div>
 
 				{/* Mobile Menu */}
+
 				{/* If nav is not showing display the first styles. If it is open the show the second */}
 				<div
 					className={
@@ -59,7 +62,7 @@ const Navbar = () => {
 							: 'sm:hidden absolute top-[100vh] left-0 right-0 bottom-0 flex justify-center items-center w-full h-screen bg-black text-center ease-in duration-300'
 					}
 				>
-					<ul className="font-['Crimson-Text']">
+					<ul className="font-['Crimson-Text'] uppercase">
 						<li className="p-4 text-4xl hover:text-gray-500">
 							<Link href="/">Home</Link>
 						</li>

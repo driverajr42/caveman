@@ -1,36 +1,35 @@
-import Avatar from './avatar'
-import Date from './date'
-import CoverImage from './cover-image'
-import Link from 'next/link'
+import Link from 'next/link';
+import Avatar from './avatar';
+import CoverImage from './cover-image';
+import Date from './date';
 
 export default function PostPreview({
-  title,
-  coverImage,
+	title,
+	coverImage,
 
-  excerpt,
+	excerpt,
 
-  slug,
+	slug,
 }) {
-  return (
-    <div>
-      <div className="mb-5">
-        {coverImage && (
-          <CoverImage title={title} coverImage={coverImage} slug={slug} />
-        )}
-      </div>
-      <h3 className="text-3xl text-center mb-3 leading-snug">
-        <Link
-          href={`/posts/${slug}`}
-          className="hover:underline"
-          dangerouslySetInnerHTML={{ __html: title }}
-        ></Link>
-      </h3>
-      
-      <div
-        className="text-lg text-center leading-relaxed mb-4"
-        dangerouslySetInnerHTML={{ __html: excerpt }}
-      />
-    
-    </div>
-  )
+	return (
+		<div>
+			<div className="mb-5">
+				{coverImage && (
+					<CoverImage title={title} coverImage={coverImage} slug={slug} />
+				)}
+			</div>
+			<h3 className="text-3xl text-center font-['Crimson-Text'] mb-3 leading-snug">
+				<Link
+					href={`/posts/${slug}`}
+					className="hover:underline"
+					dangerouslySetInnerHTML={{ __html: title }}
+				></Link>
+			</h3>
+
+			<div
+				className="text-lg text-center font-['Open-Sans'] leading-relaxed mb-4"
+				dangerouslySetInnerHTML={{ __html: excerpt }}
+			/>
+		</div>
+	);
 }
