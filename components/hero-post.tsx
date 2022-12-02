@@ -16,7 +16,7 @@ export default function HeroPost({ title, coverImage, excerpt, slug }) {
 					<h3 className="mb-4 text-4xl lg:text-6xl leading-tight font-['Crimson-Text']">
 						<Link
 							href={`/posts/${slug}`}
-							className="hover:underline"
+							className="hover:underline hover:underline-offset-8 hover:text-accent-success"
 							dangerouslySetInnerHTML={{ __html: title }}
 						></Link>
 					</h3>
