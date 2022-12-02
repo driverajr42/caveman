@@ -38,7 +38,7 @@ const Navbar = () => {
 		>
 			{/* Company Logo */}
 			<div className="max-w-[1240px]  flex justify-between items-center p-4 text-white">
-				<h1 className="text-accent-2 text-2xl font-bold font-['Rokkitt']">
+				<h1 className="text-accent-2 text-2xl text-center font-bold font-['Rokkitt']">
 					Thoughts <br />
 					of a Caveman
 				</h1>
