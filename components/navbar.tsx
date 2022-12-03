@@ -5,7 +5,7 @@ import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 
 import Logo from '../docs/logo.svg';
 
-const Navbar = () => {
+const Navbar = ({ menuItems: { menuItems } }) => {
 	const [nav, setNav] = useState(false);
 
 	const handleNav = () => {
@@ -63,7 +63,17 @@ const Navbar = () => {
 					}
 				>
 					<ul className="font-['Crimson-Text'] uppercase">
-						<li className="p-4 text-4xl hover:text-gray-500">
+						{menuItems.edges.map((item) => (
+							<li key={item.node.path}>
+								<a
+									className="p-4 ml-2 text-white hover:underline"
+									href={item?.node?.connectedNode?.node?.slug}
+								>
+									{item.node.label}
+								</a>
+							</li>
+						))}
+						{/* <li className="p-4 text-4xl hover:text-gray-500">
 							<Link href="/">Home</Link>
 						</li>
 						<li className="p-4 text-4xl hover:text-gray-500">
@@ -74,7 +84,7 @@ const Navbar = () => {
 						</li>
 						<li className="p-4 text-4xl hover:text-gray-500">
 							<Link href="/contact">Contact</Link>
-						</li>
+						</li> */}
 					</ul>
 				</div>
 			</div>
