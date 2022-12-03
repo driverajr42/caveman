@@ -27,19 +27,14 @@ const Navbar = ({ menuItems: { menuItems } }) => {
 					</h1>
 				</Link>
 
-				<ul className="hidden sm:flex">
-					<li className="p-4">
-						<Link href="/">Home</Link>
-					</li>
-					<li className="p-4">
-						<Link href="/#gallery">Gallery</Link>
-					</li>
-					<li className="p-4">
-						<Link href="/portfolio">Work</Link>
-					</li>
-					<li className="p-4">
-						<Link href="/contact">Contact</Link>
-					</li>
+				<ul className="hidden sm:flex md:text-accent-2">
+					{menuItems.edges.map((item) => (
+						<li key={item.node.path} className="p-4">
+							<a href={item?.node?.connectedNode?.node?.slug}>
+								{item.node.label}
+							</a>
+						</li>
+					))}
 				</ul>
 
 				{/* Mobile Menu Button */}
@@ -64,27 +59,15 @@ const Navbar = ({ menuItems: { menuItems } }) => {
 				>
 					<ul className="font-['Crimson-Text'] uppercase">
 						{menuItems.edges.map((item) => (
-							<li key={item.node.path}>
-								<a
-									className="p-4 ml-2 text-white hover:underline"
-									href={item?.node?.connectedNode?.node?.slug}
-								>
+							<li
+								key={item.node.path}
+								className="p-4 text-4xl hover:text-gray-500"
+							>
+								<a href={item?.node?.connectedNode?.node?.slug}>
 									{item.node.label}
 								</a>
 							</li>
 						))}
-						{/* <li className="p-4 text-4xl hover:text-gray-500">
-							<Link href="/">Home</Link>
-						</li>
-						<li className="p-4 text-4xl hover:text-gray-500">
-							<Link href="/#gallery">Gallery</Link>
-						</li>
-						<li className="p-4 text-4xl hover:text-gray-500">
-							<Link href="/portfolio">Work</Link>
-						</li>
-						<li className="p-4 text-4xl hover:text-gray-500">
-							<Link href="/contact">Contact</Link>
-						</li> */}
 					</ul>
 				</div>
 			</div>
